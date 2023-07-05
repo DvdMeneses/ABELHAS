@@ -1,5 +1,5 @@
 """
-URL configuration for mel project.
+URL configuration for prova-GQS-3 project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -18,6 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from Producao import views
 
+
+
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('criar-coleta/', views.criar_coleta, name='criar-coleta'),
+    path('listar-coletas/', views.listar_coletas, name='listar_coletas'),
+
 ]

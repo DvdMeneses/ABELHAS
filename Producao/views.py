@@ -5,7 +5,7 @@ from django.views.generic import CreateView, UpdateView, ListView, DetailView
 from Producao.models import Coleta, Criacao
 from Producao.forms import ColetaForm
 
-@login_required
+
 def criar_coleta(request):
     if request.method == 'POST':
         form = ColetaForm(request.POST)
@@ -19,7 +19,8 @@ def criar_coleta(request):
                 data=data,
                 quantidade=quantidade
             )
-            return redirect('Producao:listar_coletas')
+            return redirect('coleta:index.html')
+
     else:
         form = ColetaForm()
 
@@ -27,13 +28,14 @@ def criar_coleta(request):
         'form': form
     }
 
-    return render(request, 'Producao/criar_produto.html', informacoes)
+    return render(request, 'coleta/index.html', informacoes)
+
 
 class CriarColeta(CreateView):
     model = Coleta
     form_class = ColetaForm
-    template_name = 'Producao/criar_coleta.html'
-    success_url = reverse_lazy('Producao:listar_coletas')
+    template_name = 'coleta/index.html'
+    success_url = reverse_lazy('coleta:listar_coletas')
 
 def listar_coletas(request):
     lista_coletas = Coleta.objects.all()
@@ -42,9 +44,9 @@ def listar_coletas(request):
         'lista_coletas': lista_coletas
     }
 
-    return render(request, 'Producao/listar_coletas.html', informacoes)
+    return render(request, 'coleta/listar_coletas.html', informacoes)
 
 class ListarColetas(ListView):
     model = Coleta
     context_object_name = 'lista_coletas'
-    template_name = 'Producao/listar_coletas.html'
+    template_name = 'coleta/listar_coletas.html'

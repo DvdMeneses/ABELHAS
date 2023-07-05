@@ -1,3 +1,4 @@
 from django.contrib import admin
+from Producao.models import Coleta
 
-# Register your models here.
+admin.site.register(Coleta)
