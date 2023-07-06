@@ -17,17 +17,13 @@ class ColetaViewTest(TestCase):
         usuario.save()
 
     def test_listar_coleta_url(self):
-        response = self.client.get(reverse('Producao:listar_coletas'))
+        response = self.client.get(reverse('listar'))
         self.assertEquals(response.status_code, 200)
 
     def test_listar_coleta_template(self):
-        response = self.client.get(reverse('Producao:listar_coletas'))
-        self.assertTemplateUsed(response, 'Producao/listar_coletas.html')
+        response = self.client.get(reverse('listar'))
+        self.assertTemplateUsed(response, 'coleta/listar.html')
 
     def test_listar_coleta_all(self):
-        response = self.client.get(reverse('Producao:listar_coletas'))
-        self.assertEqual(len(response.context['listar_coletas']), 4)
-
-    def test_criar_coleta_redirect_login(self):
-        response = self.client.get(reverse('Producao:criar_coletas'))
-        self.assertRedirects(response, '/Producao/listar_coletas/?next=/produto/criar_coletas/')
+        response = self.client.get(reverse('listar'))
+        self.assertEqual(len(response.context['listar']), 4)

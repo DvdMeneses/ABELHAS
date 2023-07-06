@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Producao import views
+from Producao.views import criar_coleta, Criar_Produto_cv, editar_coleta, listar_coletas, Listar_Coletas_lv, \
+    detalhes_coleta, Detalhes_coleta_dv
+
 
 
 
