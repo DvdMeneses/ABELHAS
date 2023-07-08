@@ -8,10 +8,10 @@ from Producao.forms import ColetaForm
 from Producao.models import Coleta, Criacao
 
 
-class ProdutoFormTest(TestCase):
+class ColetaFormTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        Criacao.objects.create(raca='Apis mellifera', data_entrada='2023-04-20')
+        Criacao.objects.create(raca='Apis mellifera', data_entrada='2026-04-20')
         Criacao.objects.create(raca='Apis mellifera mellifera', data_entrada='2020-11-22')
         Criacao.objects.create(raca='Apis mellifera ligustica', data_entrada='2022-03-07')
         Criacao.objects.create(raca='Caucasica', data_entrada='2021-05-27')
@@ -31,7 +31,7 @@ class ProdutoFormTest(TestCase):
                 'quantidade': 3
             }
         )
-        self.assertTrue(form.is_valid())
+        self.assertFalse(form.is_valid())
 
     def test_coleta_existente2(self):
         form = ColetaForm(
@@ -41,4 +41,8 @@ class ProdutoFormTest(TestCase):
                 'quantidade': 3
             }
         )
+        self.assertFalse(form.is_valid())
+
+    def test_producao_nao_existente(self):
+        form = ColetaForm(data={'criacao': Criacao.objects.get(id=1), 'data': '1999-06-25', 'quantidade': 10})
         self.assertTrue(form.is_valid())

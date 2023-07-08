@@ -14,18 +14,25 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
+
 from django.urls import path
 from Producao.views import criar_coleta, editar_coleta, listar_coletas, Listar_Coletas_lv, \
     detalhes_coleta, Detalhes_coleta_dv, Criar_coleta_cv, deletar_coleta, Deletar_coleta_dv, exibir_coletas, \
     Exibir_Coletas_lv
 
-
-
+app_name = "producao"
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('criar-coleta/', views.criar_coleta, name='criar-coleta'),
-    path('listar-coletas/', views.listar_coletas, name='listar_coletas'),
+    path('adicionar/', criar_coleta, name='adicionar'),
+    path('adicionar_cv/', Criar_coleta_cv.as_view(), name='adicionar_cv'),
+    path('editar/<int:coleta_id>/', editar_coleta, name='editar'),
+    path('listar/', listar_coletas, name='listar'),
+    path('listar_lv/', Listar_Coletas_lv.as_view(), name='listar_lv'),
+    path('exibir/', exibir_coletas, name='exibir'),
+    path('exibir_lv/', Exibir_Coletas_lv.as_view(), name='exibir_lv'),
+    path('detalhes/<int:pk>/', detalhes_coleta, name='detalhes'),
+    path('detalhes_dv/<int:pk>/', Detalhes_coleta_dv.as_view(), name='detalhes_dv'),
+    path('deletar/<int:pk>/', deletar_coleta, name='deletar'),
+    path('deletar_dv/<int:pk>/', Deletar_coleta_dv.as_view(), name='deletar_dv'),
 
 ]

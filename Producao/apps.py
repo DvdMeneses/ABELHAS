@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ProducaoConfig(AppConfig):
+class ColetaConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'Producao'
