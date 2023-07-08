@@ -10,7 +10,6 @@ def criar_coleta(request):
     if request.method == 'POST':
         form = ColetaForm(request.POST)
         if form.is_valid():
-            id = form.cleaned_data['id']
             data = form.cleaned_data['data']
             criacao = form.cleaned_data['criacao']
             quantidade = form.cleaned_data['quantidade']
@@ -20,7 +19,7 @@ def criar_coleta(request):
                 criacao=criacao,
                 quantidade=quantidade
             )
-            return redirect('coleta:listar')
+            return redirect('listar')
     else:
         form = ColetaForm()
     informacoes = {

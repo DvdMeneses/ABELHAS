@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Detalhes do produto
+{% endblock %}
+
+{% block titulo_pagina %}
+Detalhes
+{% endblock %}
+
+{% block conteudo %}
+    <p><strong>id:</strong> {{produto.id}}</p>
+    <p>data: {{produto.data}}</p>
+    <p>criacao: {{produto.criacao}}</p>
+    <p>Quantidade: {{produto.quantidade}}</p>
+
+{% endblock %}

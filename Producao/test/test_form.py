@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -21,7 +23,7 @@ class ProdutoFormTest(TestCase):
         Coleta.objects.create(criacao=Criacao.objects.get(id=1), data='2021-05-27', quantidade=5)
         Coleta.objects.create(criacao=Criacao.objects.get(id=2), data='2023-01-02', quantidade=1)
 
-    def test_coleta_existente(self):
+    def test_coleta_existente1(self):
         form = ColetaForm(
             data = {
                 'criacao': Criacao.objects.get(id=1),
@@ -31,7 +33,7 @@ class ProdutoFormTest(TestCase):
         )
         self.assertTrue(form.is_valid())
 
-    def test_coleta_existente(self):
+    def test_coleta_existente2(self):
         form = ColetaForm(
             data = {
                 'criacao': Criacao.objects.get(id=1),

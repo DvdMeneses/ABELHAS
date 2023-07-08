@@ -1,3 +1,4 @@
+from datetime import timedelta
 from multiprocessing import connection
 
 from django.forms import ModelForm
@@ -12,8 +13,12 @@ class ColetaForm(ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         # Pega o nome que foi adicionado no formulário
-        id = cleaned_data.get("id")
-        quantidade = self.cleaned_data['quantidade']
-        coletas_existentes = Coleta.objects.filter(id=id, quantidade=quantidade)
-        if (len(coletas_existentes) > 0):
+
+        data = self.cleaned_data['data']
+
+        data_anterior = data - timedelta(days=1)
+        data_posterior = data + timedelta(days=1)
+
+        coletas_existentes = Coleta.objects.filter(data__range=[data_anterior, data_posterior])
+        if (len(coletas_existentes) > 0  ):
             raise ValidationError("Já há um produto deste fornecedor com este nome cadastrado.")

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Listar produtos
+{% endblock %}
+
+{% block titulo_pagina %}
+Coletas
+{% endblock %}
+
+{% block conteudo %}
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if coletas %}
+    <ul>
+        {% for coleta in coletas %}
+            <li>
+                <strong>{{coleta.id}}: {{ coleta.quantidade }} - {{ coleta.criacao }}</strong>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Não há coletas cadastradas.</p>
+    {% endif %}
+{% endblock %}
